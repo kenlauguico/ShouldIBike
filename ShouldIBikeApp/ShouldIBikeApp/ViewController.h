@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NetworkManager.h"
 
 @interface ViewController : UIViewController
+
+@property (strong, nonatomic) NetworkManager *manager;
 
 @end

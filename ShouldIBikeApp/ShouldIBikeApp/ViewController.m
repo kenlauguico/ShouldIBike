@@ -7,6 +7,11 @@
 //
 
 #import "ViewController.h"
+#import "BikeAnswer.h"
+#import "WeatherHour.h"
+#import "WeatherHourNow.h"
+#import "City.h"
+#import "NextTenHours.h"
 
 @interface ViewController ()
 
@@ -17,13 +22,33 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    self.manager = [[NetworkManager alloc] init];
+    
+    NSLog(@"Getting answer for 94080");
+    
+    [self.manager getShouldIBikeAnswerWithZip:@"94080" callback:^(NSDictionary *dictionaryResponse) {
+        
+        BikeAnswer *answer = [[BikeAnswer alloc] initWithDictionary:dictionaryResponse];
+        
+        switch (answer.type) {
+            case BikeAnswerTypeNo:
+                NSLog(@"You shouldn't bike.");
+                break;
+            
+            case BikeAnswerTypeYes:
+                NSLog(@"You should bike.");
+                break;
+                
+            case BikeAnswerTypeMaybe:
+                NSLog(@"Maybe.");
+                break;
+        }
+    }];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end

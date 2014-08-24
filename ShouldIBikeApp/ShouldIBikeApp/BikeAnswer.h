@@ -13,7 +13,7 @@ enum {
     BikeAnswerTypeYes,
     BikeAnswerTypeMaybe,
 };
-typedef NSNumber *BikeAnswerType;
+typedef int BikeAnswerType;
 
 
 @class City, NextTenHours;

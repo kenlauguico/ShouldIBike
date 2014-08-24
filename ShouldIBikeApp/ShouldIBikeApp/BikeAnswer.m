@@ -7,6 +7,8 @@
 //
 
 #import "BikeAnswer.h"
+#import "WeatherHour.h"
+#import "WeatherHourNow.h"
 #import "City.h"
 #import "NextTenHours.h"
 
@@ -15,7 +17,8 @@
 - (id)initWithDictionary:(NSDictionary *)dictionary
 {
     self.city = [[City alloc] initWithDictionary:dictionary[@"city"]];
-    self.type = (BikeAnswerType)dictionary[@"type"];
+    self.type = (BikeAnswerType)((NSString *)dictionary[@"answer_type"]).intValue;
+    self.nextTenHours = [[NextTenHours alloc] initWithDictionary:dictionary[@"next_ten"]];
     
     return self;
 }

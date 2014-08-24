@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+@class WeatherHourNow;
 @interface NextTenHours : NSArray
+
+- (id)initWithWeatherHourNow:(WeatherHourNow *)weatherHourNow NextTenHours:(NSArray *)nextTenHours;
+- (id)initWithDictionary:(NSDictionary *)dictionary;
 
 @end

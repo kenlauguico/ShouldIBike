@@ -12,6 +12,28 @@
 
 @implementation NextTenHours
 
+- (id)initWithDictionary:(NSDictionary *)dictionary
+{
+    NSMutableArray *mutableArray = [NSMutableArray array];
+    
+    for (int i = 0; i < dictionary.count; i++) {
+        switch (i) {
+            case 0: {
+                WeatherHourNow *weatherHourNow = [[WeatherHourNow alloc]
+                                                  initWithDictionary:[dictionary objectForKey:@(i)]];
+                [mutableArray addObject:weatherHourNow];
+            } break;
+                
+            default: {
+                WeatherHour *weatherHour = [[WeatherHour alloc] initWithDictionary:[dictionary objectForKey:@(i)]];
+                [mutableArray addObject:weatherHour];
+            } break;
+        }
+    }
+    
+    return self;
+}
+
 - (id)initWithWeatherHourNow:(WeatherHourNow *)weatherHourNow NextTenHours:(NSArray *)nextTenHours
 {
     NSMutableArray *mutableArray = [NSMutableArray array];
