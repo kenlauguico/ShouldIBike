@@ -4,7 +4,11 @@ require_once 'lib/SimpleNWS.php';
 require_once 'lib/ShouldIBikeModel.php';
 require_once 'lib/ZipGeocoder.php';
 
-$city = ShouldIBike\getCityDetailsFromZip();
+if (\ShouldIBike\isUsingZip()) {
+	$city = ShouldIBike\getCityDetailsFromZip();
+} else {
+	$city = ShouldIBike\getCityDetailsFromLatLng();
+}
 $lat = $city->lat;
 $long = $city->lng;
 
