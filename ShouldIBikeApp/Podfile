@@ -2,7 +2,8 @@
 # platform :ios, "6.0"
 
 target "ShouldIBikeApp" do
-	pod "AFNetworking", "~> 2.0"
+    pod 'SBJson', '~> 2.2.3'
+	pod 'AFNetworking', '~> 2.0'
 end
 
 target "ShouldIBikeAppTests" do

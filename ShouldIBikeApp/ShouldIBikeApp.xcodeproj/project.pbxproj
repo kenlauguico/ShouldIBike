@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		038B005449064D9C89420E96 /* libPods-ShouldIBikeApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 849A499C4BD4407792D5883E /* libPods-ShouldIBikeApp.a */; };
+		82A04BC719AA071A00C813B0 /* WeatherHour.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A04BC619AA071A00C813B0 /* WeatherHour.m */; };
+		82A04BCA19AA076000C813B0 /* WeatherHourNow.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A04BC919AA076000C813B0 /* WeatherHourNow.m */; };
+		82A04BCD19AA10C400C813B0 /* BikeAnswer.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A04BCC19AA10C400C813B0 /* BikeAnswer.m */; };
+		82A04BD019AA10F200C813B0 /* NextTenHours.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A04BCF19AA10F200C813B0 /* NextTenHours.m */; };
+		82A04BD319AA110600C813B0 /* City.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A04BD219AA110600C813B0 /* City.m */; };
 		82C010B019A9DC4500EE239B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82C010AF19A9DC4500EE239B /* Foundation.framework */; };
 		82C010B219A9DC4500EE239B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82C010B119A9DC4500EE239B /* CoreGraphics.framework */; };
 		82C010B419A9DC4500EE239B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82C010B319A9DC4500EE239B /* UIKit.framework */; };
@@ -33,6 +38,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		82A04BC519AA071A00C813B0 /* WeatherHour.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WeatherHour.h; path = ShouldIBikeApp/WeatherHour.h; sourceTree = "<group>"; };
+		82A04BC619AA071A00C813B0 /* WeatherHour.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WeatherHour.m; path = ShouldIBikeApp/WeatherHour.m; sourceTree = "<group>"; };
+		82A04BC819AA076000C813B0 /* WeatherHourNow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WeatherHourNow.h; path = ShouldIBikeApp/WeatherHourNow.h; sourceTree = "<group>"; };
+		82A04BC919AA076000C813B0 /* WeatherHourNow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WeatherHourNow.m; path = ShouldIBikeApp/WeatherHourNow.m; sourceTree = "<group>"; };
+		82A04BCB19AA10C400C813B0 /* BikeAnswer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BikeAnswer.h; path = ShouldIBikeApp/BikeAnswer.h; sourceTree = "<group>"; };
+		82A04BCC19AA10C400C813B0 /* BikeAnswer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BikeAnswer.m; path = ShouldIBikeApp/BikeAnswer.m; sourceTree = "<group>"; };
+		82A04BCE19AA10F200C813B0 /* NextTenHours.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NextTenHours.h; path = ShouldIBikeApp/NextTenHours.h; sourceTree = "<group>"; };
+		82A04BCF19AA10F200C813B0 /* NextTenHours.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NextTenHours.m; path = ShouldIBikeApp/NextTenHours.m; sourceTree = "<group>"; };
+		82A04BD119AA110600C813B0 /* City.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = City.h; path = ShouldIBikeApp/City.h; sourceTree = "<group>"; };
+		82A04BD219AA110600C813B0 /* City.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = City.m; path = ShouldIBikeApp/City.m; sourceTree = "<group>"; };
 		82C010AC19A9DC4500EE239B /* ShouldIBikeApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShouldIBikeApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		82C010AF19A9DC4500EE239B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		82C010B119A9DC4500EE239B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -81,6 +96,16 @@
 		82A04BBD19A9FD1900C813B0 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				82A04BC519AA071A00C813B0 /* WeatherHour.h */,
+				82A04BC619AA071A00C813B0 /* WeatherHour.m */,
+				82A04BC819AA076000C813B0 /* WeatherHourNow.h */,
+				82A04BC919AA076000C813B0 /* WeatherHourNow.m */,
+				82A04BCB19AA10C400C813B0 /* BikeAnswer.h */,
+				82A04BCC19AA10C400C813B0 /* BikeAnswer.m */,
+				82A04BCE19AA10F200C813B0 /* NextTenHours.h */,
+				82A04BCF19AA10F200C813B0 /* NextTenHours.m */,
+				82A04BD119AA110600C813B0 /* City.h */,
+				82A04BD219AA110600C813B0 /* City.m */,
 			);
 			name = Models;
 			path = ..;
@@ -301,8 +326,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				82A04BC719AA071A00C813B0 /* WeatherHour.m in Sources */,
+				82A04BD019AA10F200C813B0 /* NextTenHours.m in Sources */,
+				82A04BD319AA110600C813B0 /* City.m in Sources */,
 				82C010C619A9DC4500EE239B /* ViewController.m in Sources */,
+				82A04BCD19AA10C400C813B0 /* BikeAnswer.m in Sources */,
 				82C010C019A9DC4500EE239B /* AppDelegate.m in Sources */,
+				82A04BCA19AA076000C813B0 /* WeatherHourNow.m in Sources */,
 				82C010BC19A9DC4500EE239B /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
