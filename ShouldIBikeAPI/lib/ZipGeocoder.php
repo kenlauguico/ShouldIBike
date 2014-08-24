@@ -1,18 +1,27 @@
 <?php
+namespace ShouldIBike;
+
+/**
+ * Zip Geocoder model
+ *
+ * @author Ken Lauguico <me@kenlauguico.com>
+ * @version 1.0
+ * @package SHouldIBikeAPI
+ */
+
 
 function getCityDetailsFromZip() {
-	$zip = $_GET['zip'];
-	$request = 'http://maps.google.com/maps/api/geocode/json?sensor=false&address=' . $zip;
- 	$stream = file_get_contents($request);
- 	$json = json_decode($stream,true);
-	$city_raw = $json['results'][0];
+	$_zip = $_GET['zip'];
+	$_request = 'http://maps.google.com/maps/api/geocode/json?sensor=false&address=' . $_zip;
+
+	$_city_raw = getArrayFromJSONFile($_request)['results'][0];
 
 	$_city = new City;
 
-	$_city->lat = $city_raw['geometry']['location']['lat'];
-	$_city->lng = $city_raw['geometry']['location']['lng'];
+	$_city->lat = $_city_raw['geometry']['location']['lat'];
+	$_city->lng = $_city_raw['geometry']['location']['lng'];
 
-	foreach($city_raw['address_components'] as $component) {
+	foreach($_city_raw['address_components'] as $component) {
 		switch($component['types'][0]) {
 			case 'postal_code':
 				$_city->zip = $component['long_name'];
@@ -26,8 +35,14 @@ function getCityDetailsFromZip() {
 	return $_city;
 }
 
+function getArrayFromJSONFile($_url) {
+	$_stream = file_get_contents($_url);
+ 	$_array = json_decode($_stream,true);
+ 	return $_array;
+}
 
-// Classes & Objects
+
+// Classes
 
 class City {
 	var $name;

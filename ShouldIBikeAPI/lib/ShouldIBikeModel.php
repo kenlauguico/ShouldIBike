@@ -1,4 +1,81 @@
 <?php
+namespace ShouldIBike;
+
+/**
+ * ShouldIBike model class
+ *
+ * @author Ken Lauguico <me@kenlauguico.com>
+ * @version 1.0
+ * @package SHouldIBikeAPI
+ */
+
+
+// Methods
+
+function getShouldBikeAnswerJSON($city, $type, $next_ten) {
+	$answer = array();
+	$answer['city'] = $city;
+	$answer['answer_type'] = $type;
+	$answer['next_ten'] = $next_ten;
+
+	return json_encode($answer);
+}
+
+function getShouldBikeAnswerType(NextTenHours $next_ten) {
+	$answer_type_no = 0;
+	$answer_type_yes = 1;
+	$answer_type_maybe = 2;
+
+	$rain_chances = 0;
+
+	// Check the next 3 hours for rain
+	for ($i = 0; $i < 3; $i++) {
+		if ($next_ten[$i]->weather_condition == 'rain') {
+			$rain_chances += 1;
+		}
+	}
+
+	switch($rain_chances) {
+		case 0:
+			return $answer_type_yes;
+			break;
+		case 1:
+			return $answer_type_maybe;
+			break;
+		case 2:
+			return $answer_type_maybe;
+			break;
+		case 3:
+			return $answer_type_no;
+			break;
+	}
+}
+
+function getHoursFromNow($hours) {
+	// TODO: Change timezone based on zip code
+	date_default_timezone_set('America/Los_Angeles');
+	$_now = date('g');
+	$_now += $hours;
+
+	do {
+		if ($_now <= 12) {
+			break;
+		}
+
+		$_now -= 12;
+	} while($_now > 12);
+
+	return $_now;
+}
+
+function getTimestampHoursFromNow($hours) {
+	// TODO: Change timezone based on zip code
+	date_default_timezone_set('America/Los_Angeles');
+
+	return strtotime('+'.$hours.' hours');
+}
+
+
 // Classes
 
 class WeatherHourNow {
@@ -47,7 +124,7 @@ class WeatherHour {
 	}
 }
 
-class NextTenHours extends ArrayObject {
+class NextTenHours extends \ArrayObject {
 	public function init(WeatherHourNow $weather_hour_now, Array $ten_hours) {
 		$this->append($weather_hour_now);
 		foreach($ten_hours as $weather_hour) {
@@ -55,11 +132,4 @@ class NextTenHours extends ArrayObject {
         }
 	}
 }
-
-
-// Objects
-
-$answer_type_no = 0;
-$answer_type_yes = 1;
-$answer_type_maybe = 2;
 ?>
