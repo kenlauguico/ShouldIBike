@@ -9,10 +9,12 @@
 #import <Foundation/Foundation.h>
 #import <AFNetworking/AFNetworking.h>
 
+@class CLLocation;
 @interface NetworkManager : NSObject
 
 @property (strong, nonatomic) AFHTTPRequestOperationManager *manager;
 
 - (void)getShouldIBikeAnswerWithZip:(NSString *)zip callback:(void (^)(NSDictionary *))callback;
+- (void)getShouldIBikeAnswerWithLocation:(CLLocation *)location callback:(void (^)(NSDictionary *))callback;
 
 @end

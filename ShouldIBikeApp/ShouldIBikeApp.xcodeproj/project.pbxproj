@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		038B005449064D9C89420E96 /* libPods-ShouldIBikeApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 849A499C4BD4407792D5883E /* libPods-ShouldIBikeApp.a */; };
+		825F861A19AA91D40034289F /* IconConditionFog.png in Resources */ = {isa = PBXBuildFile; fileRef = 825F861519AA91D40034289F /* IconConditionFog.png */; };
+		825F861B19AA91D40034289F /* IconConditionMoon.png in Resources */ = {isa = PBXBuildFile; fileRef = 825F861619AA91D40034289F /* IconConditionMoon.png */; };
+		825F861C19AA91D40034289F /* IconConditionRain.png in Resources */ = {isa = PBXBuildFile; fileRef = 825F861719AA91D40034289F /* IconConditionRain.png */; };
+		825F861D19AA91D40034289F /* IconConditionSun.png in Resources */ = {isa = PBXBuildFile; fileRef = 825F861819AA91D40034289F /* IconConditionSun.png */; };
+		825F861E19AA91D40034289F /* IconConditionThunderstorms.png in Resources */ = {isa = PBXBuildFile; fileRef = 825F861919AA91D40034289F /* IconConditionThunderstorms.png */; };
+		825F862019AA94010034289F /* IconCompass.png in Resources */ = {isa = PBXBuildFile; fileRef = 825F861F19AA94010034289F /* IconCompass.png */; };
 		82A04BC719AA071A00C813B0 /* WeatherHour.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A04BC619AA071A00C813B0 /* WeatherHour.m */; };
 		82A04BCA19AA076000C813B0 /* WeatherHourNow.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A04BC919AA076000C813B0 /* WeatherHourNow.m */; };
 		82A04BCD19AA10C400C813B0 /* BikeAnswer.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A04BCC19AA10C400C813B0 /* BikeAnswer.m */; };
@@ -40,6 +46,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		825F861519AA91D40034289F /* IconConditionFog.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = IconConditionFog.png; path = ShouldIBikeApp/Images/IconConditionFog.png; sourceTree = "<group>"; };
+		825F861619AA91D40034289F /* IconConditionMoon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = IconConditionMoon.png; path = ShouldIBikeApp/Images/IconConditionMoon.png; sourceTree = "<group>"; };
+		825F861719AA91D40034289F /* IconConditionRain.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = IconConditionRain.png; path = ShouldIBikeApp/Images/IconConditionRain.png; sourceTree = "<group>"; };
+		825F861819AA91D40034289F /* IconConditionSun.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = IconConditionSun.png; path = ShouldIBikeApp/Images/IconConditionSun.png; sourceTree = "<group>"; };
+		825F861919AA91D40034289F /* IconConditionThunderstorms.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = IconConditionThunderstorms.png; path = ShouldIBikeApp/Images/IconConditionThunderstorms.png; sourceTree = "<group>"; };
+		825F861F19AA94010034289F /* IconCompass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = IconCompass.png; path = ShouldIBikeApp/Images/IconCompass.png; sourceTree = "<group>"; };
 		82A04BC519AA071A00C813B0 /* WeatherHour.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WeatherHour.h; path = ShouldIBikeApp/WeatherHour.h; sourceTree = "<group>"; };
 		82A04BC619AA071A00C813B0 /* WeatherHour.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WeatherHour.m; path = ShouldIBikeApp/WeatherHour.m; sourceTree = "<group>"; };
 		82A04BC819AA076000C813B0 /* WeatherHourNow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WeatherHourNow.h; path = ShouldIBikeApp/WeatherHourNow.h; sourceTree = "<group>"; };
@@ -99,6 +111,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		825F860A19AA917A0034289F /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				825F861F19AA94010034289F /* IconCompass.png */,
+				825F861519AA91D40034289F /* IconConditionFog.png */,
+				825F861619AA91D40034289F /* IconConditionMoon.png */,
+				825F861719AA91D40034289F /* IconConditionRain.png */,
+				825F861819AA91D40034289F /* IconConditionSun.png */,
+				825F861919AA91D40034289F /* IconConditionThunderstorms.png */,
+				82C010C719A9DC4500EE239B /* Images.xcassets */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
 		82A04BBD19A9FD1900C813B0 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -143,7 +169,7 @@
 		82A04BC019A9FD9B00C813B0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				82C010C719A9DC4500EE239B /* Images.xcassets */,
+				825F860A19AA917A0034289F /* Images */,
 			);
 			name = Resources;
 			path = ..;
@@ -254,6 +280,16 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Ken Lauguico";
 				TargetAttributes = {
+					82C010AB19A9DC4500EE239B = {
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 0;
+							};
+							com.apple.Maps.iOS = {
+								enabled = 0;
+							};
+						};
+					};
 					82C010CC19A9DC4500EE239B = {
 						TestTargetID = 82C010AB19A9DC4500EE239B;
 					};
@@ -283,9 +319,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				825F861D19AA91D40034289F /* IconConditionSun.png in Resources */,
 				82C010C819A9DC4500EE239B /* Images.xcassets in Resources */,
 				82C010BA19A9DC4500EE239B /* InfoPlist.strings in Resources */,
+				825F862019AA94010034289F /* IconCompass.png in Resources */,
+				825F861E19AA91D40034289F /* IconConditionThunderstorms.png in Resources */,
+				825F861C19AA91D40034289F /* IconConditionRain.png in Resources */,
+				825F861B19AA91D40034289F /* IconConditionMoon.png in Resources */,
 				82C010C319A9DC4500EE239B /* Main.storyboard in Resources */,
+				825F861A19AA91D40034289F /* IconConditionFog.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -466,7 +508,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ShouldIBikeApp/ShouldIBikeApp-Prefix.pch";
 				INFOPLIST_FILE = "ShouldIBikeApp/ShouldIBikeApp-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -481,7 +523,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ShouldIBikeApp/ShouldIBikeApp-Prefix.pch";
 				INFOPLIST_FILE = "ShouldIBikeApp/ShouldIBikeApp-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

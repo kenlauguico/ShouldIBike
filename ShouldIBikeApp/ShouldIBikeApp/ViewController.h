@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
 #import "NetworkManager.h"
 
 @class BikeAnswer;
@@ -14,5 +15,8 @@
 
 @property (strong, nonatomic) NetworkManager *manager;
 @property (strong, nonatomic) BikeAnswer *answer;
+@property (strong, nonatomic) CLLocationManager *locationManager;
+@property (strong, nonatomic) IBOutlet UIImageView *weatherConditionImageView;
+@property (strong, nonatomic) IBOutlet UILabel *answerLabel;
 
 @end
