@@ -30,7 +30,9 @@ function getShouldBikeAnswerType(NextTenHours $next_ten) {
 
 	// Check the next 3 hours for rain
 	for ($i = 0; $i < 3; $i++) {
-		if ($next_ten[$i]->weather_condition == 'rain') {
+		if ($next_ten[$i]->weather_condition == 'rain' ||
+			$next_ten[$i]->weather_condition == 'rain showers' ||
+			$next_ten[$i]->weather_condition == 'thunderstorms') {
 			$rain_chances += 1;
 		}
 	}

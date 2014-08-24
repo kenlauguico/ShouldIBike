@@ -8,9 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+@class WeatherCondition;
 @interface WeatherHour : NSObject
 
-@property (strong, nonatomic) NSString *weatherCondition;
+@property (strong, nonatomic) WeatherCondition *weatherCondition;
 @property (strong, nonatomic) NSDate *timestamp;
 @property (strong, nonatomic) NSNumber *temperatureInFahrenheit;
 

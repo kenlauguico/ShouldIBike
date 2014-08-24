@@ -11,6 +11,8 @@
 @class WeatherHourNow;
 @interface NextTenHours : NSArray
 
+@property (strong, nonatomic) WeatherHourNow *now;
+
 - (id)initWithWeatherHourNow:(WeatherHourNow *)weatherHourNow NextTenHours:(NSArray *)nextTenHours;
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 

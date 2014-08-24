@@ -7,22 +7,23 @@
 //
 
 #import "WeatherHourNow.h"
+#import "WeatherCondition.h"
 
 @implementation WeatherHourNow
 
 - (id)initWithDictionary:(NSDictionary *)dictionary
 {
-    self.weatherCondition = dictionary[@"weatherCondition"];
-    self.timestamp = dictionary[@"timestamp"];
-    self.sunriseTimestamp = [NSDate dateWithTimeIntervalSince1970:(NSInteger)dictionary[@"sunriseTimestamp"]];
-    self.sunsetTimestamp = [NSDate dateWithTimeIntervalSince1970:(NSInteger)dictionary[@"sunsetTimestamp"]];
-    self.temperatureInFahrenheit = dictionary[@"temperatureInFahrenheit"];
+    self.timestamp = [NSDate dateWithTimeIntervalSince1970:(NSInteger)dictionary[@"timestamp"]];
+    self.weatherCondition = [[WeatherCondition alloc] initWithType:dictionary[@"weather_condition"] timestamp:self.timestamp];
+    self.sunriseTimestamp = [NSDate dateWithTimeIntervalSince1970:(NSInteger)dictionary[@"sunrise_timestamp"]];
+    self.sunsetTimestamp = [NSDate dateWithTimeIntervalSince1970:(NSInteger)dictionary[@"sunset_timestamp"]];
+    self.temperatureInFahrenheit = dictionary[@"temperature_in_fahrenheit"];
     self.humidity = dictionary[@"humidity"];
-    self.windDirection = dictionary[@"windDirection"];
-    self.windSpeedInMPH = dictionary[@"windSpeedInMPH"];
-    self.windChill = dictionary[@"windChill"];
+    self.windDirection = dictionary[@"wind_direction"];
+    self.windSpeedInMPH = dictionary[@"wind_speed_in_mph"];
+    self.windChill = dictionary[@"wind_chill"];
     self.precipitation = dictionary[@"precipitation"];
-    self.precipitationPerHour = dictionary[@"precipitationPerHour"];
+    self.precipitationPerHour = dictionary[@"precipitation_per_hour"];
     
     return self;
 }

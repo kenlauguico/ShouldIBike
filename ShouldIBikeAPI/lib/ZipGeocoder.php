@@ -35,6 +35,10 @@ function getCityDetailsFromZip() {
 	return $_city;
 }
 
+function getCityDetailsFromLatLng() {
+	//http://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&result_type=locality|postal_code
+}
+
 function getArrayFromJSONFile($_url) {
 	$_stream = file_get_contents($_url);
  	$_array = json_decode($_stream,true);

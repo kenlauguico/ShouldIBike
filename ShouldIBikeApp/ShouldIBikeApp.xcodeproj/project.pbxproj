@@ -14,6 +14,7 @@
 		82A04BD019AA10F200C813B0 /* NextTenHours.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A04BCF19AA10F200C813B0 /* NextTenHours.m */; };
 		82A04BD319AA110600C813B0 /* City.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A04BD219AA110600C813B0 /* City.m */; };
 		82A04BD619AA4DCE00C813B0 /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A04BD519AA4DCE00C813B0 /* NetworkManager.m */; };
+		82A04BD919AA6DD200C813B0 /* WeatherCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A04BD819AA6DD200C813B0 /* WeatherCondition.m */; };
 		82C010B019A9DC4500EE239B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82C010AF19A9DC4500EE239B /* Foundation.framework */; };
 		82C010B219A9DC4500EE239B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82C010B119A9DC4500EE239B /* CoreGraphics.framework */; };
 		82C010B419A9DC4500EE239B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82C010B319A9DC4500EE239B /* UIKit.framework */; };
@@ -51,6 +52,8 @@
 		82A04BD219AA110600C813B0 /* City.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = City.m; path = ShouldIBikeApp/City.m; sourceTree = "<group>"; };
 		82A04BD419AA4DCE00C813B0 /* NetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NetworkManager.h; path = ShouldIBikeApp/NetworkManager.h; sourceTree = "<group>"; };
 		82A04BD519AA4DCE00C813B0 /* NetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NetworkManager.m; path = ShouldIBikeApp/NetworkManager.m; sourceTree = "<group>"; };
+		82A04BD719AA6DD200C813B0 /* WeatherCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WeatherCondition.h; path = ShouldIBikeApp/WeatherCondition.h; sourceTree = "<group>"; };
+		82A04BD819AA6DD200C813B0 /* WeatherCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WeatherCondition.m; path = ShouldIBikeApp/WeatherCondition.m; sourceTree = "<group>"; };
 		82C010AC19A9DC4500EE239B /* ShouldIBikeApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShouldIBikeApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		82C010AF19A9DC4500EE239B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		82C010B119A9DC4500EE239B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -111,6 +114,8 @@
 				82A04BD219AA110600C813B0 /* City.m */,
 				82A04BD419AA4DCE00C813B0 /* NetworkManager.h */,
 				82A04BD519AA4DCE00C813B0 /* NetworkManager.m */,
+				82A04BD719AA6DD200C813B0 /* WeatherCondition.h */,
+				82A04BD819AA6DD200C813B0 /* WeatherCondition.m */,
 			);
 			name = Models;
 			path = ..;
@@ -333,6 +338,7 @@
 			files = (
 				82A04BC719AA071A00C813B0 /* WeatherHour.m in Sources */,
 				82A04BD019AA10F200C813B0 /* NextTenHours.m in Sources */,
+				82A04BD919AA6DD200C813B0 /* WeatherCondition.m in Sources */,
 				82A04BD319AA110600C813B0 /* City.m in Sources */,
 				82C010C619A9DC4500EE239B /* ViewController.m in Sources */,
 				82A04BCD19AA10C400C813B0 /* BikeAnswer.m in Sources */,

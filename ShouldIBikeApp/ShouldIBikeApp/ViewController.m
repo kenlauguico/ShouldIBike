@@ -10,6 +10,7 @@
 #import "BikeAnswer.h"
 #import "WeatherHour.h"
 #import "WeatherHourNow.h"
+#import "WeatherCondition.h"
 #import "City.h"
 #import "NextTenHours.h"
 
@@ -24,19 +25,19 @@
     [super viewDidLoad];
     self.manager = [[NetworkManager alloc] init];
     
-    NSLog(@"Getting answer for 94080");
+    NSLog(@"Getting answer for 02025");
     
-    [self.manager getShouldIBikeAnswerWithZip:@"94080" callback:^(NSDictionary *dictionaryResponse) {
-        
+    [self.manager getShouldIBikeAnswerWithZip:@"02025" callback:^(NSDictionary *dictionaryResponse) {
+        NSLog(@"Response: %@", dictionaryResponse);
         BikeAnswer *answer = [[BikeAnswer alloc] initWithDictionary:dictionaryResponse];
         
         switch (answer.type) {
             case BikeAnswerTypeNo:
-                NSLog(@"You shouldn't bike.");
+                NSLog(@"You shouldn't bike in %@. It's %@ing", answer.city.name, answer.nextTenHours.now.weatherCondition.name);
                 break;
             
             case BikeAnswerTypeYes:
-                NSLog(@"You should bike.");
+                NSLog(@"You should bike in %@.", answer.city.name);
                 break;
                 
             case BikeAnswerTypeMaybe:
