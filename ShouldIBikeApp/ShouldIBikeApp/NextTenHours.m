@@ -33,6 +33,10 @@
         }
     }
     
+    NSMutableArray *mutableArrayNextHours = [mutableArray copy];
+    [mutableArray removeObject:0];
+    self.nextHours = [NSArray arrayWithArray:mutableArrayNextHours];
+    
     return self;
 }
 
@@ -41,8 +45,10 @@
 {
     NSMutableArray *mutableArray = [NSMutableArray array];
     
-    [mutableArray addObject:weatherHourNow];
     self.now = weatherHourNow;
+    self.nextHours = nextTenHours;
+    
+    [mutableArray addObject:weatherHourNow];
     
     for (NSDictionary *weatherHourDictionary in nextTenHours) {
         WeatherHour *weatherHour = [[WeatherHour alloc] initWithDictionary:weatherHourDictionary];

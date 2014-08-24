@@ -23,21 +23,21 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.manager = [[NetworkManager alloc] init];
+    _manager = [[NetworkManager alloc] init];
     
     NSLog(@"Getting answer for 02025");
     
-    [self.manager getShouldIBikeAnswerWithZip:@"02025" callback:^(NSDictionary *dictionaryResponse) {
+    [_manager getShouldIBikeAnswerWithZip:@"02025" callback:^(NSDictionary *dictionaryResponse) {
         NSLog(@"Response: %@", dictionaryResponse);
-        BikeAnswer *answer = [[BikeAnswer alloc] initWithDictionary:dictionaryResponse];
+        _answer = [[BikeAnswer alloc] initWithDictionary:dictionaryResponse];
         
-        switch (answer.type) {
+        switch (_answer.type) {
             case BikeAnswerTypeNo:
-                NSLog(@"You shouldn't bike in %@. It's %@ing", answer.city.name, answer.nextTenHours.now.weatherCondition.name);
+                NSLog(@"You shouldn't bike in %@. It's %@ing", _answer.city.name, _answer.nextTenHours.now.weatherCondition.name);
                 break;
             
             case BikeAnswerTypeYes:
-                NSLog(@"You should bike in %@.", answer.city.name);
+                NSLog(@"You should bike in %@.", _answer.city.name);
                 break;
                 
             case BikeAnswerTypeMaybe:
