@@ -16,7 +16,7 @@
 @property (strong, nonatomic) NetworkManager *manager;
 @property (strong, nonatomic) BikeAnswer *answer;
 @property (strong, nonatomic) CLLocationManager *locationManager;
-@property (strong, nonatomic) IBOutlet UIImageView *weatherConditionImageView;
+@property (strong, nonatomic) IBOutlet UIButton *weatherConditionButton;
 @property (strong, nonatomic) IBOutlet UILabel *answerLabel;
 
 @end

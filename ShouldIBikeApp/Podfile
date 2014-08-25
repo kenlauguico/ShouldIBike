@@ -4,6 +4,7 @@
 target "ShouldIBikeApp" do
     pod 'SBJson', '~> 2.2.3'
 	pod 'AFNetworking', '~> 2.0'
+    pod 'UITintedButton'
 end
 
 target "ShouldIBikeAppTests" do

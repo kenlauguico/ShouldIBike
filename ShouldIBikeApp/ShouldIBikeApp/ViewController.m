@@ -13,6 +13,7 @@
 #import "WeatherCondition.h"
 #import "City.h"
 #import "NextTenHours.h"
+#import <UITintedButton/UIButton+tintImage.h>
 
 @interface ViewController () <CLLocationManagerDelegate>
 
@@ -28,16 +29,17 @@
     [super viewDidLoad];
     _manager = [[NetworkManager alloc] init];
     
+    [self setForegroundColor:[UIColor whiteColor]];
+    
     _locationManager = [[CLLocationManager alloc] init];
-    
-    if ([self isiOS8]) {
-        [_locationManager requestWhenInUseAuthorization];
-    }
-    
     _locationManager.delegate = self;
     _locationManager.distanceFilter = kCLDistanceFilterNone;
     _locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
     [_locationManager startUpdatingLocation];
+    
+    if ([self isiOS8]) {
+        [_locationManager requestWhenInUseAuthorization];
+    }
 }
 
 
@@ -105,8 +107,16 @@
                         }
                         
                         _answerLabel.text = friendlyAnswer;
-                        _weatherConditionImageView.image = _answer.nextTenHours.now.weatherCondition.image;
+                        [_weatherConditionButton setImage:_answer.nextTenHours.now.weatherCondition.image forState:(UIControlStateNormal)];
+                        [_weatherConditionButton setImageTintColor:_answerLabel.textColor forState:(UIControlStateNormal)];
                     } completion:nil];
+}
+
+
+- (void)setForegroundColor:(UIColor *)color
+{
+    [_weatherConditionButton setImageTintColor:color forState:(UIControlStateNormal)];
+    _answerLabel.textColor = color;
 }
 
 

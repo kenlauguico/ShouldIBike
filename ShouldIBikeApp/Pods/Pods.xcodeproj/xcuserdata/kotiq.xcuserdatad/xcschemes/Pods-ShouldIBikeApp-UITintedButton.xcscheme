@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "83E371704B344FF5B8036787"
-               BuildableName = "libPods-ShouldIBikeApp-SBJson.a"
-               BlueprintName = "Pods-ShouldIBikeApp-SBJson"
+               BlueprintIdentifier = "3510213D2F6B44ECAB945D08"
+               BuildableName = "libPods-ShouldIBikeApp-UITintedButton.a"
+               BlueprintName = "Pods-ShouldIBikeApp-UITintedButton"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

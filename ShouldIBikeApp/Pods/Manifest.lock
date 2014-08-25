@@ -21,13 +21,16 @@ PODS:
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - SBJson (2.2.3)
+  - UITintedButton (1.0)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
   - SBJson (~> 2.2.3)
+  - UITintedButton
 
 SPEC CHECKSUMS:
   AFNetworking: 6d7b76aa5d04c8c37daad3eef4b7e3f2a7620da3
   SBJson: 10c134db061e139c51be95ea28d2f33122cbb538
+  UITintedButton: 0f8c0683f07b3547003cdac57007ad635e016d07
 
 COCOAPODS: 0.33.1
