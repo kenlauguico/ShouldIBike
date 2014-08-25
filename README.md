@@ -5,7 +5,7 @@ Should I Bike?
   <img src="http://i.imgur.com/GlhXsDE.png" />
 </p>
 
-Originally a web app influenced by [Victor Tolosa](http://victortolosa.com/bike/). I wanted to convert this to an iOS app from the ground up.
+Originally a web app created by [Victor Tolosa](http://victortolosa.com/bike/). I wanted to convert this to an iOS app from the ground up, creating an API that communicates with the iOS client side. You'll find the source for both the API and Xcode iOS 8 project.
 
 <p align="center">
   <img src="http://victortolosa.com/portfolio/imgs/projectmockups/bikenow.png" />
