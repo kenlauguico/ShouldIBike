@@ -18,14 +18,14 @@ function getConditionsJSON() {
 	global $wkey;
 	$q = $_GET['q'];
 	$json_string = file_get_contents("http://api.wunderground.com/api/$wkey/conditions/conditions/q/$q.json");
-	return json_decode($json_string);
+	return json_decode($json_string, true);
 }
 
 function getHourlyJSON() {
 	global $wkey;
 	$q = $_GET['q'];
 	$json_string = file_get_contents("http://api.wunderground.com/api/$wkey/hourly/conditions/q/$q.json");
-	return json_decode($json_string);
+	return json_decode($json_string, true);
 }
 
 function getShouldBikeAnswerJSON($city, $type, $next_ten) {
@@ -113,19 +113,19 @@ class WeatherHourNow {
 	var $precipitation_per_hour;
 
 	public function init_with_json_conditions($json) {
-		$conditions = $json->{'current_observation'};
+		$conditions = $json['current_observation'];
 
-		$this->weather_condition = $conditions->{'weather'};
-		$this->timestamp = $conditions->{'observation_epoch'};
-		// $this->sunrise_timestamp = $conditions->{''};
-		// $this->sunset_timestamp = $conditions->{''};
-		$this->temp_in_fahrenheit = $conditions->{'temp_f'};
-		$this->humidity = $conditions->{'relative_humidity'};
-		$this->wind_direction = $conditions->{'wind_dir'};
-		$this->wind_speed_in_mph = $conditions->{'wind_mph'};
-		$this->wind_chill = $conditions->{'windchill_string'};
-		$this->precipitation = $conditions->{'precip_today_in'};
-		$this->precipitation_per_hour = $conditions->{'precip_1hr_in'};
+		$this->weather_condition = $conditions['weather'];
+		$this->timestamp = $conditions['observation_epoch'];
+		// $this->sunrise_timestamp = $conditions[''];
+		// $this->sunset_timestamp = $conditions[''];
+		$this->temp_in_fahrenheit = $conditions['temp_f'];
+		$this->humidity = $conditions['relative_humidity'];
+		$this->wind_direction = $conditions['wind_dir'];
+		$this->wind_speed_in_mph = $conditions['wind_mph'];
+		$this->wind_chill = $conditions['windchill_string'];
+		$this->precipitation = $conditions['precip_today_in'];
+		$this->precipitation_per_hour = $conditions['precip_1hr_in'];
 	}
 }
 
@@ -135,9 +135,9 @@ class WeatherHour {
 	var $temp_in_fahrenheit;
 
 	public function init_with_json_forecast_hour($json) {
-		$this->timestamp = $json->{'FCTTIME'}->{'epoch'};
-		$this->temp_in_fahrenheit = $json->{'temp'}->{'english'};
-		$this->weather_condition = $json->{'condition'};
+		$this->timestamp = $json['FCTTIME']['epoch'];
+		$this->temp_in_fahrenheit = $json['temp']['english'];
+		$this->weather_condition = $json['condition'];
 	}
 }
 

@@ -1,9 +1,6 @@
 <?php
 namespace ShouldIBike;
 
-require_once 'lib/ShouldIBikeModel.php';
-require_once 'lib/ZipGeocoder.php';
-
 /**
  * ShouldIBike API - Wrapper around wunderground
  *
@@ -11,6 +8,10 @@ require_once 'lib/ZipGeocoder.php';
  * @version 1.0
  * @package ShouldIBikeAPI
  */
+
+require_once 'lib/ShouldIBikeModel.php';
+require_once 'lib/ZipGeocoder.php';
+
 
 $conditions_json = getConditionsJSON();
 $hourly_json = getHourlyJSON();
@@ -29,7 +30,7 @@ $hour_limit = 10;
 $ten_hours = array();
 
 for ($i = 0; $i < $hour_limit; $i++) {
-	$current_hour = $hourly_json->{'hourly_forecast'}[$i];
+	$current_hour = $hourly_json['hourly_forecast'][$i];
 
 	$weather_hour = new WeatherHour();
 	$weather_hour->init_with_json_forecast_hour($current_hour);

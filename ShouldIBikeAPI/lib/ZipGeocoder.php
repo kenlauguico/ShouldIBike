@@ -89,12 +89,12 @@ class City {
 	var $lng;
 
 	public function init_with_json_conditions($json) {
-		$display_location = $json->{'current_observation'}->{'display_location'};
+		$display_location = $json['current_observation']['display_location'];
 
-		$this->name = $display_location->{'city'};
-		$this->zip = $display_location->{'zip'};
-		$this->lat = $display_location->{'latitude'};
-		$this->lng = $display_location->{'longitude'};
+		$this->name = $display_location['city'];
+		$this->zip = $display_location['zip'];
+		$this->lat = $display_location['latitude'];
+		$this->lng = $display_location['longitude'];
 	}
 }
 
