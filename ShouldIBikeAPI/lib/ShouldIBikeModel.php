@@ -1,6 +1,8 @@
 <?php
 namespace ShouldIBike;
 
+require_once 'wunderground.php';
+
 /**
  * ShouldIBike model class
  *
@@ -12,6 +14,20 @@ namespace ShouldIBike;
 
 // Methods
 
+function getConditionsJSON() {
+	global $wkey;
+	$q = $_GET['q'];
+	$json_string = file_get_contents("http://api.wunderground.com/api/$wkey/conditions/conditions/q/$q.json");
+	return json_decode($json_string);
+}
+
+function getHourlyJSON() {
+	global $wkey;
+	$q = $_GET['q'];
+	$json_string = file_get_contents("http://api.wunderground.com/api/$wkey/hourly/conditions/q/$q.json");
+	return json_decode($json_string);
+}
+
 function getShouldBikeAnswerJSON($city, $type, $next_ten) {
 	$answer = array();
 	$answer['city'] = $city;
@@ -22,17 +38,20 @@ function getShouldBikeAnswerJSON($city, $type, $next_ten) {
 }
 
 function getShouldBikeAnswerType(NextTenHours $next_ten) {
-	$answer_type_no = 0;
-	$answer_type_yes = 1;
-	$answer_type_maybe = 2;
+	global $answer_type_no, $answer_type_yes, $answer_type_maybe;
 
 	$rain_chances = 0;
 
 	// Check the next 3 hours for rain
 	for ($i = 0; $i < 3; $i++) {
-		if ($next_ten[$i]->weather_condition == 'rain' ||
-			$next_ten[$i]->weather_condition == 'rain showers' ||
-			$next_ten[$i]->weather_condition == 'thunderstorms') {
+		if ($next_ten[$i]->weather_condition == 'Rain' ||
+			$next_ten[$i]->weather_condition == 'Chance of Rain' ||
+			$next_ten[$i]->weather_condition == 'Rain Showers' ||
+			$next_ten[$i]->weather_condition == 'Drizzle' ||
+			$next_ten[$i]->weather_condition == 'Light Drizzle' ||
+			$next_ten[$i]->weather_condition == 'Heavy Drizzle' ||
+			$next_ten[$i]->weather_condition == 'Light Rain' ||
+			$next_ten[$i]->weather_condition == 'Heavy Rain') {
 			$rain_chances += 1;
 		}
 	}
@@ -93,21 +112,20 @@ class WeatherHourNow {
 	var $precipitation;
 	var $precipitation_per_hour;
 
-	public function get_array() {
-		$array = array();
-		$array['weather_condition'] = $weather_condition;
-		$array['timestamp'] = $timestamp;
-		$array['sunrise_timestamp'] = $sunrise_timestamp;
-		$array['sunset_timestamp'] = $sunset_timestamp;
-		$array['temp_in_fahrenheit'] = $temp_in_fahrenheit;
-		$array['humidity'] = $humidity;
-		$array['wind_direction'] = $wind_direction;
-		$array['wind_speed_in_mph'] = $wind_speed_in_mph;
-		$array['wind_chill'] = $wind_chill;
-		$array['precipitation'] = $precipitation;
-		$array['precipitation_per_hour'] = $precipitation_per_hour;
+	public function init_with_json_conditions($json) {
+		$conditions = $json->{'current_observation'};
 
-		return $array;
+		$this->weather_condition = $conditions->{'weather'};
+		$this->timestamp = $conditions->{'observation_epoch'};
+		// $this->sunrise_timestamp = $conditions->{''};
+		// $this->sunset_timestamp = $conditions->{''};
+		$this->temp_in_fahrenheit = $conditions->{'temp_f'};
+		$this->humidity = $conditions->{'relative_humidity'};
+		$this->wind_direction = $conditions->{'wind_dir'};
+		$this->wind_speed_in_mph = $conditions->{'wind_mph'};
+		$this->wind_chill = $conditions->{'windchill_string'};
+		$this->precipitation = $conditions->{'precip_today_in'};
+		$this->precipitation_per_hour = $conditions->{'precip_1hr_in'};
 	}
 }
 
@@ -116,13 +134,10 @@ class WeatherHour {
 	var $timestamp;
 	var $temp_in_fahrenheit;
 
-	public function get_array() {
-		$array = array();
-		$array['weather_condition'] = $weather_condition;
-		$array['timestamp'] = $timestamp;
-		$array['temp_in_fahrenheit'] = $temp_in_fahrenheit;
-
-		return $array;
+	public function init_with_json_forecast_hour($json) {
+		$this->timestamp = $json->{'FCTTIME'}->{'epoch'};
+		$this->temp_in_fahrenheit = $json->{'temp'}->{'english'};
+		$this->weather_condition = $json->{'condition'};
 	}
 }
 
@@ -134,4 +149,9 @@ class NextTenHours extends \ArrayObject {
         }
 	}
 }
+
+
+$answer_type_no = 0;
+$answer_type_yes = 1;
+$answer_type_maybe = 2;
 ?>

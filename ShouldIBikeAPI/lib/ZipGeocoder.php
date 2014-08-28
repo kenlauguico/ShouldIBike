@@ -6,7 +6,7 @@ namespace ShouldIBike;
  *
  * @author Ken Lauguico <me@kenlauguico.com>
  * @version 1.0
- * @package SHouldIBikeAPI
+ * @package ShouldIBikeAPI
  */
 
 
@@ -88,14 +88,13 @@ class City {
 	var $lat;
 	var $lng;
 
-	public function get_array() {
-		$array = array();
-		$array['name'] = $name;
-		$array['zip'] = $zip;
-		$array['lat'] = $lat;
-		$array['lng'] = $lng;
+	public function init_with_json_conditions($json) {
+		$display_location = $json->{'current_observation'}->{'display_location'};
 
-		return $array;
+		$this->name = $display_location->{'city'};
+		$this->zip = $display_location->{'zip'};
+		$this->lat = $display_location->{'latitude'};
+		$this->lng = $display_location->{'longitude'};
 	}
 }
 
