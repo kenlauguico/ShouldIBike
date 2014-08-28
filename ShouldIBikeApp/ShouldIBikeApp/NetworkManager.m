@@ -18,7 +18,7 @@ NSString *hostURL = @"http://kenlauguico.com/shouldibike";
 - (void)getShouldIBikeAnswerWithZip:(NSString *)zip callback:(void (^)(NSDictionary *))callback
 {
     self.manager = [AFHTTPRequestOperationManager manager];
-    NSDictionary *params = @{@"zip": zip};
+    NSDictionary *params = @{@"q": zip};
     
     [self.manager GET:hostURL
             parameters:params
@@ -37,7 +37,7 @@ NSString *hostURL = @"http://kenlauguico.com/shouldibike";
 {
     self.manager = [AFHTTPRequestOperationManager manager];
     NSString *latLngCommaSeparated = [NSString stringWithFormat:@"%f,%f", location.coordinate.latitude, location.coordinate.longitude];
-    NSDictionary *params = @{@"latlng": latLngCommaSeparated};
+    NSDictionary *params = @{@"q": latLngCommaSeparated};
     
     [self.manager GET:hostURL
            parameters:params

@@ -8,11 +8,16 @@
 
 #import "WeatherCondition.h"
 
-NSString *const WeatherConditionTypeRain = @"rain";
-NSString *const WeatherConditionTypeRainShowers = @"rain showers";
-NSString *const WeatherConditionTypeFog = @"fog";
-NSString *const WeatherConditionTypeThunderstorms = @"thunderstorms";
-NSString *const WeatherConditionTypeNull = @"null";
+NSString *const WeatherConditionTypeClear = @"Clear";
+NSString *const WeatherConditionTypeRain = @"Rain";
+NSString *const WeatherConditionTypeChanceOfRain = @"Chance of Rain";
+NSString *const WeatherConditionTypeRainShowers = @"Rain Showers";
+NSString *const WeatherConditionTypeDrizzle = @"Drizzle";
+NSString *const WeatherConditionTypeLightDrizzle = @"Light Drizzle";
+NSString *const WeatherConditionTypeHeavyDrizzle = @"Heavy Drizzle";
+NSString *const WeatherConditionTypeLightRain = @"Light Rain";
+NSString *const WeatherConditionTypeHeavyRain = @"Heavy Rain";
+NSString *const WeatherConditionTyepPartlyCloudy = @"Partly Cloudy";
 
 @implementation WeatherCondition
 
@@ -22,26 +27,39 @@ NSString *const WeatherConditionTypeNull = @"null";
     self.type = type;
     self.timestamp = timestamp;
     
+    [self setIsDaytime];
+    
     return self;
 }
 
 
 - (NSString *)name
 {
+    return self.type;
+}
+
+
+- (NSString *)getIconFileName
+{
     if ([self.type isEqualToString:WeatherConditionTypeRain] ||
-        [self.type isEqualToString:WeatherConditionTypeRainShowers]) {
-        return @"Rain";
+        [self.type isEqualToString:WeatherConditionTypeLightRain] ||
+        [self.type isEqualToString:WeatherConditionTypeLightDrizzle] ||
+        [self.type isEqualToString:WeatherConditionTypeDrizzle] ||
+        [self.type isEqualToString:WeatherConditionTypeHeavyDrizzle] ||
+        [self.type isEqualToString:WeatherConditionTypeChanceOfRain] ||
+        [self.type isEqualToString:WeatherConditionTypeHeavyRain]) {
+        return WeatherConditionTypeRain;
     }
     
-    if ([self.type isEqualToString:WeatherConditionTypeFog]) {
-        return @"Fog";
+    if ([self.type isEqualToString:WeatherConditionTypeClear]) {
+        if ([self isDaytime]) {
+            return @"Sun";
+        } else {
+            return @"Moon";
+        }
     }
     
-    if ([self.type isEqualToString:WeatherConditionTypeThunderstorms]) {
-        return @"Thunderstorms";
-    }
-    
-    return (self.isDaytime) ? @"Sun" : @"Moon";
+    return self.type;
 }
 
 - (BOOL)setIsDaytime
@@ -57,7 +75,7 @@ NSString *const WeatherConditionTypeNull = @"null";
 
 - (UIImage *)image
 {
-    return [UIImage imageNamed:[NSString stringWithFormat:@"IconCondition%@.png", [self name]]];
+    return [UIImage imageNamed:[NSString stringWithFormat:@"IconCondition%@.png", [self getIconFileName]]];
 }
 
 @end
