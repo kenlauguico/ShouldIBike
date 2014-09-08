@@ -9,17 +9,17 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-ShouldIBikeApp-FXBlurView.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Pods-ShouldIBikeApp-SBJson.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
 		<key>Pods-ShouldIBikeApp-UITintedButton.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-ShouldIBikeApp-pop.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -32,27 +32,27 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>5D28AC2607A5453ABA4835AA</key>
+		<key>032C2A0B920E4CA9B3A9A534</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>80A9C4E1CA2D4E428793FE72</key>
+		<key>21A6423C350049D2A400D777</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8AF761DDB04C4D66B89183D8</key>
+		<key>9C09625CA0D8497B803F641C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>EDEAA6150C4E4FD08A9B503B</key>
+		<key>EC3A49CBD95C4E57A6B2525E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>FF8CEAE4D74F4528AE09F2F0</key>
+		<key>F01CAD69913243BF98CD0F5E</key>
 		<dict>
 			<key>primary</key>
 			<true/>

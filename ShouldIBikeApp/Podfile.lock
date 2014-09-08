@@ -20,19 +20,19 @@ PODS:
   - AFNetworking/UIKit (2.4.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - FXBlurView (1.6.2)
+  - pop (1.0.6)
   - SBJson (2.2.3)
   - UITintedButton (1.0)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
-  - FXBlurView (~> 1.6)
+  - pop
   - SBJson (~> 2.2.3)
   - UITintedButton
 
 SPEC CHECKSUMS:
   AFNetworking: 0aabc6fae66d6e5d039eeb21c315843c7aae51ab
-  FXBlurView: 47496afc9160097fa34af35fc4b310bd85d65dca
+  pop: e518794da38942c05255eb64b36d894e70cb4f00
   SBJson: 10c134db061e139c51be95ea28d2f33122cbb538
   UITintedButton: 0f8c0683f07b3547003cdac57007ad635e016d07
 

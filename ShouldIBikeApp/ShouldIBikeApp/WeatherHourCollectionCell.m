@@ -24,6 +24,7 @@
     _weatherIcon = [[UIButton alloc] initWithFrame:CGRectMake(5, 0, 37, 37)];
     [_weatherIcon setImage:weatherHour.weatherCondition.iconImage forState:(UIControlStateNormal)];
     [_weatherIcon setImageTintColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
+    [_weatherIcon setUserInteractionEnabled:NO];
     [self addSubview:_weatherIcon];
     
     _timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(2, 37, 42, 13)];
@@ -32,6 +33,8 @@
     _timeLabel.font = [UIFont boldSystemFontOfSize:10];
     _timeLabel.textAlignment = NSTextAlignmentCenter;
     [self addSubview:_timeLabel];
+    
+    [self setAlpha:0.70];
 }
 
 @end

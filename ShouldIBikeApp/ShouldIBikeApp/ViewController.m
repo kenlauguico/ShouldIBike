@@ -15,7 +15,7 @@
 #import "NextTenHours.h"
 #import "WeatherHourCollectionCell.h"
 #import <UITintedButton/UIButton+tintImage.h>
-#import <FXBlurView/FXBlurView.h>
+#import <pop/POP.h>
 
 @interface ViewController () <CLLocationManagerDelegate, UICollectionViewDelegate, UICollectionViewDataSource>
 
@@ -37,7 +37,7 @@
     [self setForegroundColor:[UIColor whiteColor]];
     [self removeTabBarShadow];
     [self setBlurryTabBar];
-    [self resetLabels];
+    [self resetView];
     
     _didGrabLocation = NO;
     _locationManager = [[CLLocationManager alloc] init];
@@ -105,7 +105,30 @@
 
 - (IBAction)answerButtonPressed:(id)sender
 {
-    [_weatherDetailsLabel setHidden:!_weatherDetailsLabel.hidden];
+    [_weatherDetailsLabel setHidden:NO];
+    [_weatherDetailsLabel setTag:!@(_weatherDetailsLabel.tag).boolValue];
+    
+    if (@(_weatherDetailsLabel.tag).boolValue) {
+        POPBasicAnimation *fade = [POPBasicAnimation animationWithPropertyNamed:kPOPViewAlpha];
+        fade.fromValue = @(0);
+        fade.toValue = @(1);
+        [_weatherDetailsLabel pop_addAnimation:fade forKey:@"fade"];
+        
+        POPSpringAnimation *slide = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionY];
+        slide.fromValue = @(self.view.center.y);
+        slide.toValue   = @(self.view.center.y+50);
+        [_weatherDetailsLabel.layer pop_addAnimation:slide forKey:@"slideDown"];
+    } else {
+        POPBasicAnimation *fade = [POPBasicAnimation animationWithPropertyNamed:kPOPViewAlpha];
+        fade.fromValue = @(1);
+        fade.toValue = @(0);
+        [_weatherDetailsLabel pop_addAnimation:fade forKey:@"fade"];
+        
+        POPSpringAnimation *slide = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionY];
+        slide.fromValue = @(self.view.center.y+50);
+        slide.toValue   = @(self.view.center.y);
+        [_weatherDetailsLabel.layer pop_addAnimation:slide forKey:@"slideDown"];
+    }
 }
 
 
@@ -117,7 +140,11 @@
         NSLog(@"Response: %@", dictionaryResponse);
         _answer = [[BikeAnswer alloc] initWithDictionary:dictionaryResponse];
         
-        [self updateViewWithAnswer];
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND,0), ^(void) {
+            dispatch_async(dispatch_get_main_queue(), ^(void) {
+                [self updateViewWithAnswer];
+            });
+        });
     }];
 }
 
@@ -128,23 +155,19 @@
         NSLog(@"Response: %@", dictionaryResponse);
         _answer = [[BikeAnswer alloc] initWithDictionary:dictionaryResponse];
         
-        [self updateViewWithAnswer];
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND,0), ^(void) {
+            dispatch_async(dispatch_get_main_queue(), ^(void) {
+                [self updateViewWithAnswer];
+            });
+        });
     }];
 }
 
 
 - (void)updateViewWithAnswer
 {
-    [UIView transitionWithView:self.view
-                      duration:0.9
-                       options:(UIViewAnimationOptionTransitionCrossDissolve)
-                    animations:^{
-                        
-                        [self updateWeatherInformation];
-                        [self updateWeatherImages];
-                        [self.weatherHoursCollection reloadData];
-                        
-                    } completion:nil];
+    [self updateWeatherInformation];
+    [self updateWeatherImages];
 }
 
 
@@ -192,6 +215,7 @@
     [self setDegreeLabel:[currentWeatherHour temperatureStringInFahrenheit]];
     [self setWeatherConditionLabel:currentWeatherHour.weatherCondition.name];
     [self setweatherDetailLabelWithWeather:currentWeatherHour];
+    _separator.hidden = NO;
 }
 
 
@@ -235,17 +259,48 @@
 - (void)updateWeatherImages
 {
     WeatherHourNow *currentWeatherHour = _answer.nextTenHours.now;
+    
     [_weatherConditionButton setImage:currentWeatherHour.weatherCondition.iconImage forState:(UIControlStateNormal)];
     [_weatherConditionButton setImageTintColor:_answerButton.titleLabel.textColor forState:(UIControlStateNormal)];
     [_weatherBackground setImage:currentWeatherHour.weatherCondition.backgroundImage];
+    
+    [self.weatherHoursCollection reloadData];
+    [self animateWeatherImages];
 }
 
 
-- (void)resetLabels
+- (void)animateWeatherImages
+{
+    POPSpringAnimation *anim = [POPSpringAnimation animationWithPropertyNamed:kPOPViewFrame];
+    anim.fromValue = [NSValue valueWithCGRect:CGRectMake(129, 58, 63, 63)];
+    anim.toValue = [NSValue valueWithCGRect:CGRectMake(75, 58, 63, 63)];
+    [_weatherConditionButton pop_addAnimation:anim forKey:@"moveLeft"];
+    
+    POPSpringAnimation *slideIn = [POPSpringAnimation animationWithPropertyNamed:kPOPViewFrame];
+    slideIn.fromValue = [NSValue valueWithCGRect:CGRectMake(0, self.view.frame.size.height, 320, 91)];
+    slideIn.toValue = [NSValue valueWithCGRect:CGRectMake(0, self.view.frame.size.height - 91, 320, 91)];
+    [_weatherHoursCollection pop_addAnimation:slideIn forKey:@"slideIn"];
+    
+    POPBasicAnimation *fade = [POPBasicAnimation animationWithPropertyNamed:kPOPViewAlpha];
+    fade.fromValue = @(0);
+    fade.toValue = @(1);
+    
+    [_weatherConditionButton pop_addAnimation:fade forKey:@"fade"];
+    [_degreesLabel pop_addAnimation:fade forKey:@"fade"];
+    [_conditionLabel pop_addAnimation:fade forKey:@"fade"];
+    [_weatherBackground pop_addAnimation:fade forKey:@"fade"];
+}
+
+
+- (void)resetView
 {
     [self setDegreeLabel:@""];
     [self setWeatherConditionLabel:@""];
     [self setWeatherDetailLabel:@""];
+    _separator.hidden = YES;
+    
+    _weatherBackground.frame = self.view.frame;
+    _weatherHoursCollection.frame = CGRectMake(0, self.view.frame.size.height, 320, 91);
 }
 
 
