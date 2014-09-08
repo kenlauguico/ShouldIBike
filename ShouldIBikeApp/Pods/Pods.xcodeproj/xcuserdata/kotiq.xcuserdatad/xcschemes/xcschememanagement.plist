@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-ShouldIBikeApp-FXBlurView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-ShouldIBikeApp-SBJson.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -27,22 +32,27 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>3510213D2F6B44ECAB945D08</key>
+		<key>5D28AC2607A5453ABA4835AA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>83E371704B344FF5B8036787</key>
+		<key>80A9C4E1CA2D4E428793FE72</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8D2A35333E54475A8DE3DD60</key>
+		<key>8AF761DDB04C4D66B89183D8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B5DE86F4DD8F487089CCEC74</key>
+		<key>EDEAA6150C4E4FD08A9B503B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FF8CEAE4D74F4528AE09F2F0</key>
 		<dict>
 			<key>primary</key>
 			<true/>

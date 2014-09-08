@@ -13,17 +13,17 @@
 
 - (id)initWithDictionary:(NSDictionary *)dictionary
 {
-    self.timestamp = [NSDate dateWithTimeIntervalSince1970:(NSInteger)dictionary[@"timestamp"]];
+    self.timestamp = [NSDate dateWithTimeIntervalSince1970:((NSString *)dictionary[@"timestamp"]).longLongValue];
     self.weatherCondition = [[WeatherCondition alloc] initWithType:dictionary[@"weather_condition"] timestamp:self.timestamp];
     self.sunriseTimestamp = [NSDate dateWithTimeIntervalSince1970:(NSInteger)dictionary[@"sunrise_timestamp"]];
     self.sunsetTimestamp = [NSDate dateWithTimeIntervalSince1970:(NSInteger)dictionary[@"sunset_timestamp"]];
-    self.temperatureInFahrenheit = dictionary[@"temperature_in_fahrenheit"];
-    self.humidity = dictionary[@"humidity"];
+    self.temperatureInFahrenheit = [NSNumber numberWithFloat:[dictionary[@"temp_in_fahrenheit"] floatValue]];
+    self.humidity = [NSNumber numberWithFloat:[dictionary[@"humidity"] floatValue]];
     self.windDirection = dictionary[@"wind_direction"];
-    self.windSpeedInMPH = dictionary[@"wind_speed_in_mph"];
+    self.windSpeedInMPH = [NSNumber numberWithFloat:[dictionary[@"wind_speed_in_mph"] floatValue]];
     self.windChill = dictionary[@"wind_chill"];
-    self.precipitation = dictionary[@"precipitation"];
-    self.precipitationPerHour = dictionary[@"precipitation_per_hour"];
+    self.precipitation = [NSNumber numberWithFloat:[dictionary[@"precipitation"] floatValue]];
+    self.precipitationPerHour = [NSNumber numberWithFloat:[dictionary[@"precipitation_per_hour"] floatValue]];
     
     return self;
 }

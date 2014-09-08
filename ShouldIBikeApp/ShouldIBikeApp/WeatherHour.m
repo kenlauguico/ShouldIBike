@@ -13,11 +13,26 @@
 
 - (id)initWithDictionary:(NSDictionary *)dictionary
 {
-    self.timestamp = [NSDate dateWithTimeIntervalSince1970:(NSInteger)dictionary[@"timestamp"]];
+    self.timestamp = [NSDate dateWithTimeIntervalSince1970:((NSString *)dictionary[@"timestamp"]).longLongValue];
     self.weatherCondition = [[WeatherCondition alloc] initWithType:dictionary[@"weather_condition"] timestamp:self.timestamp];
-    self.temperatureInFahrenheit = dictionary[@"temperature_in_fahrenheit"];
+    self.temperatureInFahrenheit = [NSNumber numberWithFloat:[dictionary[@"temp_in_fahrenheit"] floatValue]];
     
     return self;
+}
+
+
+- (NSString *)temperatureStringInFahrenheit
+{
+    return [NSString stringWithFormat:@"%@° F", _temperatureInFahrenheit];
+}
+
+
+- (NSString *)getHourString
+{
+    NSDateFormatter *hourFormat = [[NSDateFormatter alloc] init];
+    [hourFormat setDateFormat:@"h a"];
+    
+    return [hourFormat stringFromDate:_timestamp];
 }
 
 @end

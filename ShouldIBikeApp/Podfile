@@ -5,6 +5,7 @@ target "ShouldIBikeApp" do
     pod 'SBJson', '~> 2.2.3'
 	pod 'AFNetworking', '~> 2.0'
     pod 'UITintedButton'
+    pod 'FXBlurView', '~> 1.6'
 end
 
 target "ShouldIBikeAppTests" do

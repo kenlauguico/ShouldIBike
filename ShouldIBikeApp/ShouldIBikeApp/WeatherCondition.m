@@ -18,6 +18,7 @@ NSString *const WeatherConditionTypeHeavyDrizzle = @"Heavy Drizzle";
 NSString *const WeatherConditionTypeLightRain = @"Light Rain";
 NSString *const WeatherConditionTypeHeavyRain = @"Heavy Rain";
 NSString *const WeatherConditionTyepPartlyCloudy = @"Partly Cloudy";
+NSString *const WeatherConditionTyepMostlyCloudy = @"Mostly Cloudy";
 
 @implementation WeatherCondition
 
@@ -39,7 +40,7 @@ NSString *const WeatherConditionTyepPartlyCloudy = @"Partly Cloudy";
 }
 
 
-- (NSString *)getIconFileName
+- (NSString *)getFileName
 {
     if ([self.type isEqualToString:WeatherConditionTypeRain] ||
         [self.type isEqualToString:WeatherConditionTypeLightRain] ||
@@ -51,13 +52,11 @@ NSString *const WeatherConditionTyepPartlyCloudy = @"Partly Cloudy";
         return WeatherConditionTypeRain;
     }
     
-    if ([self.type isEqualToString:WeatherConditionTypeClear]) {
-        if ([self isDaytime]) {
-            return @"Sun";
-        } else {
-            return @"Moon";
-        }
+    if ([self.type isEqualToString:WeatherConditionTyepMostlyCloudy]) {
+        return WeatherConditionTyepPartlyCloudy;
     }
+    
+    // TODO: Impelment day or night time icon and images
     
     return self.type;
 }
@@ -73,9 +72,15 @@ NSString *const WeatherConditionTyepPartlyCloudy = @"Partly Cloudy";
 }
 
 
-- (UIImage *)image
+- (UIImage *)iconImage
 {
-    return [UIImage imageNamed:[NSString stringWithFormat:@"IconCondition%@.png", [self getIconFileName]]];
+    return [UIImage imageNamed:[NSString stringWithFormat:@"IconCondition%@.png", [self getFileName]]];
+}
+
+
+- (UIImage *)backgroundImage
+{
+    return [UIImage imageNamed:[NSString stringWithFormat:@"BackgroundCondition%@.png", [self getFileName]]];
 }
 
 @end

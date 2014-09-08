@@ -16,5 +16,7 @@
 @property (strong, nonatomic) NSNumber *temperatureInFahrenheit;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
+- (NSString *)temperatureStringInFahrenheit;
+- (NSString *)getHourString;
 
 @end

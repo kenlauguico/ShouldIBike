@@ -16,6 +16,7 @@
 
 - (id)initWithType:(NSString *)type timestamp:(NSDate *)timestamp;
 - (NSString *)name;
-- (UIImage *)image;
+- (UIImage *)iconImage;
+- (UIImage *)backgroundImage;
 
 @end
