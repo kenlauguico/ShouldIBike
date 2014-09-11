@@ -109,26 +109,36 @@
     [_weatherDetailsLabel setTag:!@(_weatherDetailsLabel.tag).boolValue];
     
     if (@(_weatherDetailsLabel.tag).boolValue) {
-        POPBasicAnimation *fade = [POPBasicAnimation animationWithPropertyNamed:kPOPViewAlpha];
-        fade.fromValue = @(0);
-        fade.toValue = @(1);
-        [_weatherDetailsLabel pop_addAnimation:fade forKey:@"fade"];
-        
-        POPSpringAnimation *slide = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionY];
-        slide.fromValue = @(self.view.center.y);
-        slide.toValue   = @(self.view.center.y+50);
-        [_weatherDetailsLabel.layer pop_addAnimation:slide forKey:@"slideDown"];
+        [self showWeatherDetails];
     } else {
-        POPBasicAnimation *fade = [POPBasicAnimation animationWithPropertyNamed:kPOPViewAlpha];
-        fade.fromValue = @(1);
-        fade.toValue = @(0);
-        [_weatherDetailsLabel pop_addAnimation:fade forKey:@"fade"];
-        
-        POPSpringAnimation *slide = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionY];
-        slide.fromValue = @(self.view.center.y+50);
-        slide.toValue   = @(self.view.center.y);
-        [_weatherDetailsLabel.layer pop_addAnimation:slide forKey:@"slideDown"];
+        [self hideWeatherDetails];
     }
+}
+
+- (void)showWeatherDetails
+{
+    POPBasicAnimation *fade = [POPBasicAnimation animationWithPropertyNamed:kPOPViewAlpha];
+    fade.fromValue = @(0);
+    fade.toValue = @(1);
+    [_weatherDetailsLabel pop_addAnimation:fade forKey:@"fade"];
+    
+    POPSpringAnimation *slide = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionY];
+    slide.fromValue = @(self.view.center.y);
+    slide.toValue   = @(self.view.center.y+50);
+    [_weatherDetailsLabel.layer pop_addAnimation:slide forKey:@"slideDown"];
+}
+
+- (void)hideWeatherDetails
+{
+    POPBasicAnimation *fade = [POPBasicAnimation animationWithPropertyNamed:kPOPViewAlpha];
+    fade.fromValue = @(1);
+    fade.toValue = @(0);
+    [_weatherDetailsLabel pop_addAnimation:fade forKey:@"fade"];
+    
+    POPSpringAnimation *slide = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionY];
+    slide.fromValue = @(self.view.center.y+50);
+    slide.toValue   = @(self.view.center.y);
+    [_weatherDetailsLabel.layer pop_addAnimation:slide forKey:@"slideDown"];
 }
 
 
@@ -273,7 +283,7 @@
 {
     POPSpringAnimation *anim = [POPSpringAnimation animationWithPropertyNamed:kPOPViewFrame];
     anim.fromValue = [NSValue valueWithCGRect:CGRectMake(129, 58, 63, 63)];
-    anim.toValue = [NSValue valueWithCGRect:CGRectMake(75, 58, 63, 63)];
+    anim.toValue = [NSValue valueWithCGRect:CGRectMake(80, 58, 63, 63)];
     [_weatherConditionButton pop_addAnimation:anim forKey:@"moveLeft"];
     
     POPSpringAnimation *slideIn = [POPSpringAnimation animationWithPropertyNamed:kPOPViewFrame];

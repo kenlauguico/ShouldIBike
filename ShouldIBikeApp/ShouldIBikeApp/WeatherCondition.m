@@ -8,7 +8,13 @@
 
 #import "WeatherCondition.h"
 
+NSString *const ShouldIBikeImageServer = @"http://kenlauguico.com/shouldibike/images/";
+
 NSString *const WeatherConditionTypeClear = @"Clear";
+
+NSString *const WeatherConditionTypeSnow = @"Snow";
+NSString *const WeatherConditionTypeHail = @"Hail";
+
 NSString *const WeatherConditionTypeRain = @"Rain";
 NSString *const WeatherConditionTypeChanceOfRain = @"Chance of Rain";
 NSString *const WeatherConditionTypeRainShowers = @"Rain Showers";
@@ -17,8 +23,18 @@ NSString *const WeatherConditionTypeLightDrizzle = @"Light Drizzle";
 NSString *const WeatherConditionTypeHeavyDrizzle = @"Heavy Drizzle";
 NSString *const WeatherConditionTypeLightRain = @"Light Rain";
 NSString *const WeatherConditionTypeHeavyRain = @"Heavy Rain";
-NSString *const WeatherConditionTyepPartlyCloudy = @"Partly Cloudy";
-NSString *const WeatherConditionTyepMostlyCloudy = @"Mostly Cloudy";
+
+NSString *const WeatherConditionTypeFog = @"Fog";
+NSString *const WeatherConditionTypeLightFog = @"Light Fog";
+NSString *const WeatherConditionTypeHeavyFog = @"Heavy Fog";
+NSString *const WeatherConditionTypePatchesOfFog = @"Patches of Fog";
+NSString *const WeatherConditionTypeHaze = @"Haze";
+NSString *const WeatherConditionTypeOvercast = @"Overcast";
+
+NSString *const WeatherConditionTypeCloudy = @"Cloudy";
+NSString *const WeatherConditionTypePartlyCloudy = @"Partly Cloudy";
+NSString *const WeatherConditionTypeMostlyCloudy = @"Mostly Cloudy";
+NSString *const WeatherConditionTypeScatteredClouds = @"Scattered Clouds";
 
 @implementation WeatherCondition
 
@@ -52,11 +68,29 @@ NSString *const WeatherConditionTyepMostlyCloudy = @"Mostly Cloudy";
         return WeatherConditionTypeRain;
     }
     
-    if ([self.type isEqualToString:WeatherConditionTyepMostlyCloudy]) {
-        return WeatherConditionTyepPartlyCloudy;
+    if ([self.type isEqualToString:WeatherConditionTypePartlyCloudy] ||
+        [self.type isEqualToString:WeatherConditionTypeMostlyCloudy] ||
+        [self.type isEqualToString:WeatherConditionTypeScatteredClouds]) {
+        return [self isDaytime] ? WeatherConditionTypeCloudy : [@"Night" stringByAppendingString:WeatherConditionTypeCloudy];
     }
     
-    // TODO: Impelment day or night time icon and images
+    if ([self.type isEqualToString:WeatherConditionTypeLightFog] ||
+        [self.type isEqualToString:WeatherConditionTypeHeavyFog] ||
+        [self.type isEqualToString:WeatherConditionTypePatchesOfFog] ||
+        [self.type isEqualToString:WeatherConditionTypeHaze] ||
+        [self.type isEqualToString:WeatherConditionTypeOvercast]) {
+        return [self isDaytime] ? WeatherConditionTypeFog : [@"Night" stringByAppendingString:WeatherConditionTypeFog];
+    }
+    
+    if ([self.type isEqualToString:WeatherConditionTypeHail]) {
+        return WeatherConditionTypeSnow;
+    }
+    
+    if (![self isDaytime]) {
+        if ([self.type isEqualToString:WeatherConditionTypeClear]) {
+            return [@"Night" stringByAppendingString:self.type];
+        }
+    }
     
     return self.type;
 }
@@ -80,7 +114,12 @@ NSString *const WeatherConditionTyepMostlyCloudy = @"Mostly Cloudy";
 
 - (UIImage *)backgroundImage
 {
-    return [UIImage imageNamed:[NSString stringWithFormat:@"BackgroundCondition%@.png", [self getFileName]]];
+    NSString *fullFileName = [NSString stringWithFormat:@"BackgroundCondition%@.png", [self getFileName]];
+    NSString *backgroundImageURLString = [ShouldIBikeImageServer stringByAppendingString:fullFileName];
+    NSURL *backgroundImageURL = [NSURL URLWithString:backgroundImageURLString];
+    NSData *data = [NSData dataWithContentsOfURL:backgroundImageURL];
+    
+    return [UIImage imageWithData:data];
 }
 
 @end
