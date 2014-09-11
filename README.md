@@ -17,7 +17,7 @@ ShouldIBikeApp
 Contains the source for the ShouldIBike iOS 8 app.
 
 <p align="center">
-  <img src="http://i.imgur.com/p49tQ7V.png" />
+  <img src="http://i.imgur.com/niLQV53.png" />
 </p>
 
 **Should I Bike** simply grabs the phone's current location and, through some logic, determines whether or not it is appropriate to bike based on the weather conditions.
