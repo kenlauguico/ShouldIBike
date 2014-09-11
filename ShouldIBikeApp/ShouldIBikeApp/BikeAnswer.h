@@ -24,5 +24,6 @@ typedef int BikeAnswerType;
 @property (strong, nonatomic) NextTenHours *nextTenHours;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
+- (NSString *)friendlyAnswer;
 
 @end

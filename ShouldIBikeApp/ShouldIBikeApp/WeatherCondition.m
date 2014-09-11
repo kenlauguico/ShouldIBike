@@ -100,7 +100,7 @@ NSString *const WeatherConditionTypeScatteredClouds = @"Scattered Clouds";
     NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitHour fromDate:self.timestamp];
     NSInteger hour = [components hour];
     
-    self.isDaytime = (hour >= 5 && hour <= 18);
+    self.isDaytime = (hour >= 6 && hour <= 18);
     
     return self.isDaytime;
 }

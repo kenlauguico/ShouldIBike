@@ -18,7 +18,9 @@
 #import <pop/POP.h>
 
 @interface ViewController () <CLLocationManagerDelegate, UICollectionViewDelegate, UICollectionViewDataSource>
-
+{
+    int addHeight;
+}
 @end
 
 @implementation ViewController
@@ -34,21 +36,30 @@
     [_weatherHoursCollection registerClass:[WeatherHourCollectionCell class] forCellWithReuseIdentifier:@"cell"];
     _weatherHoursCollection.delegate = self;
     
+    if (![self isIphone35Inch]) {
+        [self updateViewForLargerScreens];
+    }
+    
     [self setForegroundColor:[UIColor whiteColor]];
     [self removeTabBarShadow];
     [self setBlurryTabBar];
     [self resetView];
     
-    _didGrabLocation = NO;
     _locationManager = [[CLLocationManager alloc] init];
     _locationManager.delegate = self;
     _locationManager.distanceFilter = kCLDistanceFilterNone;
     _locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
-    [_locationManager startUpdatingLocation];
     
     if ([self isiOS8]) {
         [_locationManager requestWhenInUseAuthorization];
     }
+}
+
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    _didGrabLocation = NO;
+    [_locationManager startUpdatingLocation];
 }
 
 
@@ -142,7 +153,7 @@
 }
 
 
-#pragma mark - Private Methods
+#pragma mark - Private Methods -
 
 - (void)requestAnswerWithZip:(NSString *)zip
 {
@@ -173,59 +184,29 @@
     }];
 }
 
-
-- (void)updateViewWithAnswer
+- (BOOL)isiOS8
 {
-    [self updateWeatherInformation];
-    [self updateWeatherImages];
+    if ([UIDevice.currentDevice.systemVersion isEqualToString:@"8.0"]) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
+
+- (BOOL)isIphone35Inch
+{
+    return (self.view.frame.size.height == 480);
+}
+
+
+#pragma mark - Private Setter Methods -
 
 - (void)setForegroundColor:(UIColor *)color
 {
     [_weatherConditionButton setImageTintColor:color forState:(UIControlStateNormal)];
     _answerButton.titleLabel.textColor = color;
     _answerButton.titleLabel.textAlignment = NSTextAlignmentCenter;
-}
-
-
-- (void)removeTabBarShadow
-{
-    [[UITabBar appearance] setBackgroundImage:[[UIImage alloc] init]];
-    [[UITabBar appearance] setShadowImage:[[UIImage alloc] init]];
-}
-
-
-- (void)setBlurryTabBar
-{
-
-}
-
-
-- (void)updateWeatherInformation
-{
-    WeatherHourNow *currentWeatherHour = _answer.nextTenHours.now;
-    NSString *friendlyAnswer;
-    
-    switch (_answer.type) {
-        case BikeAnswerTypeNo:
-            friendlyAnswer = [NSString stringWithFormat:@"It's not okay bike in %@ +", _answer.city.name];
-            break;
-            
-        case BikeAnswerTypeYes:
-            friendlyAnswer = [NSString stringWithFormat:@"It's okay to bike in %@ +", _answer.city.name];
-            break;
-            
-        case BikeAnswerTypeMaybe:
-            friendlyAnswer = [NSString stringWithFormat:@"It might be okay to bike in %@ +", _answer.city.name];
-            break;
-    }
-    
-    [self setShouldIBikeAnswerLabel:friendlyAnswer];
-    [self setDegreeLabel:[currentWeatherHour temperatureStringInFahrenheit]];
-    [self setWeatherConditionLabel:currentWeatherHour.weatherCondition.name];
-    [self setweatherDetailLabelWithWeather:currentWeatherHour];
-    _separator.hidden = NO;
 }
 
 
@@ -266,6 +247,41 @@
 }
 
 
+#pragma mark - Private View Methods -
+
+- (void)updateViewWithAnswer
+{
+    [self updateWeatherInformation];
+    [self updateWeatherImages];
+}
+
+
+- (void)removeTabBarShadow
+{
+    [[UITabBar appearance] setBackgroundImage:[[UIImage alloc] init]];
+    [[UITabBar appearance] setShadowImage:[[UIImage alloc] init]];
+}
+
+
+- (void)setBlurryTabBar
+{
+    
+}
+
+
+- (void)updateWeatherInformation
+{
+    WeatherHourNow *currentWeatherHour = _answer.nextTenHours.now;
+    
+    [self setShouldIBikeAnswerLabel:[_answer.friendlyAnswer stringByAppendingString:@" +"]];
+    [self setDegreeLabel:[currentWeatherHour temperatureStringInFahrenheit]];
+    [self setWeatherConditionLabel:currentWeatherHour.weatherCondition.name];
+    [self setweatherDetailLabelWithWeather:currentWeatherHour];
+    _separator.hidden = NO;
+    _answerButton.userInteractionEnabled = YES;
+}
+
+
 - (void)updateWeatherImages
 {
     WeatherHourNow *currentWeatherHour = _answer.nextTenHours.now;
@@ -282,13 +298,11 @@
 - (void)animateWeatherImages
 {
     POPSpringAnimation *anim = [POPSpringAnimation animationWithPropertyNamed:kPOPViewFrame];
-    anim.fromValue = [NSValue valueWithCGRect:CGRectMake(129, 58, 63, 63)];
-    anim.toValue = [NSValue valueWithCGRect:CGRectMake(80, 58, 63, 63)];
+    anim.toValue = [NSValue valueWithCGRect:CGRectMake(80, 58+addHeight, 63, 63)];
     [_weatherConditionButton pop_addAnimation:anim forKey:@"moveLeft"];
     
     POPSpringAnimation *slideIn = [POPSpringAnimation animationWithPropertyNamed:kPOPViewFrame];
-    slideIn.fromValue = [NSValue valueWithCGRect:CGRectMake(0, self.view.frame.size.height, 320, 91)];
-    slideIn.toValue = [NSValue valueWithCGRect:CGRectMake(0, self.view.frame.size.height - 91, 320, 91)];
+    slideIn.toValue = [NSValue valueWithCGRect:CGRectMake(0, self.view.frame.size.height-91, 320, 91)];
     [_weatherHoursCollection pop_addAnimation:slideIn forKey:@"slideIn"];
     
     POPBasicAnimation *fade = [POPBasicAnimation animationWithPropertyNamed:kPOPViewAlpha];
@@ -307,20 +321,44 @@
     [self setDegreeLabel:@""];
     [self setWeatherConditionLabel:@""];
     [self setWeatherDetailLabel:@""];
+    [self setShouldIBikeAnswerLabel:@"Thinking"];
     _separator.hidden = YES;
+    _answerButton.userInteractionEnabled = NO;
     
     _weatherBackground.frame = self.view.frame;
     _weatherHoursCollection.frame = CGRectMake(0, self.view.frame.size.height, 320, 91);
+    
+    POPSpringAnimation *anim = [POPSpringAnimation animationWithPropertyNamed:kPOPViewFrame];
+    anim.toValue = [NSValue valueWithCGRect:CGRectMake(129, 58+addHeight, 63, 63)];
+    [_weatherConditionButton pop_addAnimation:anim forKey:@"moveRight"];
 }
 
 
-- (BOOL)isiOS8
+- (void)updateViewForLargerScreens
 {
-    if ([UIDevice.currentDevice.systemVersion isEqualToString:@"8.0"]) {
-        return true;
-    } else {
-        return false;
-    }
+    // TODO: Add into own view
+    
+    addHeight = 50;
+    
+    CGRect frame = _weatherConditionButton.frame;
+    frame.origin.y += addHeight;
+    _weatherConditionButton.frame = frame;
+    
+    frame = _separator.frame;
+    frame.origin.y += addHeight;
+    _separator.frame = frame;
+    
+    frame = _degreesLabel.frame;
+    frame.origin.y += addHeight;
+    _degreesLabel.frame = frame;
+    
+    frame = _conditionLabel.frame;
+    frame.origin.y += addHeight;
+    _conditionLabel.frame = frame;
+    
+    frame = _answerButton.frame;
+    frame.origin.y += addHeight;
+    _answerButton.frame = frame;
 }
 
 @end

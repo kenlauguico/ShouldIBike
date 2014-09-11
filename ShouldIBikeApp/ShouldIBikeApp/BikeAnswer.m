@@ -23,4 +23,25 @@
     return self;
 }
 
+- (NSString *)friendlyAnswer
+{
+    NSString *answer;
+    
+    switch (_type) {
+        case BikeAnswerTypeNo:
+            answer = [NSString stringWithFormat:@"Don't bike in %@", _city.name];
+            break;
+            
+        case BikeAnswerTypeYes:
+            answer = [NSString stringWithFormat:@"It's okay to bike in %@", _city.name];
+            break;
+            
+        case BikeAnswerTypeMaybe:
+            answer = [NSString stringWithFormat:@"It might be okay to bike in %@", _city.name];
+            break;
+    }
+    
+    return answer;
+}
+
 @end
